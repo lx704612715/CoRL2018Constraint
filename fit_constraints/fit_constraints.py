@@ -1,11 +1,11 @@
 import numpy as np
 from scipy.optimize import minimize
-from robust_lsq import robust_lsq_m_estimates,robust_lsq
+from fit_constraints.robust_lsq import robust_lsq_m_estimates, robust_lsq
 
 
 class InputData:
     def __init__(self,p,q,A,v,w,f,tau):
-        print "initialize with arrays of each value."
+        print("initialize with arrays of each value.")
         self.p = p
         self.q = q
         self.A = A

@@ -221,32 +221,42 @@ class concentric_cylinder_constraint(constraint):
 if __name__ == "__main__":
     c = point_contact_constraint()
     c.build_module('point_contact_constraint','point_contact_constraint')
+    print("Builded point contact constraint")
     
     c = prismatic_constraint()
     c.build_module('prismatic_constraint','prismatic_constraint')
-    
+    print("Builded prismatic constraint")
+
     c = point_on_plane_constraint()
     c.build_module('point_on_plane_constraint','point_on_plane_constraint')
-    
+    print("Builded point on plane constraint")
+
     c = planar_constraint()
     c.build_module('planar_constraint','planar_constraint')
-    
+    print("Builded planar constraint")
+
     c = axial_rotation_constraint()
     c.build_module('axial_rotation_constraint','axial_rotation_constraint')
-    
+    print("Builded axial rotation constraint")
+
     c = concentric_cylinder_constraint()
     c.build_module('concentric_cylinder_constraint','concentric_cylinder_constraint')
-    
+    print("Builded concentric cylinder constraint")
+
     c = point_on_line_constraint()
     c.build_module('point_on_line_constraint','point_on_line_constraint')
+    print("Builded point on line constraint")
 
     c = origin_on_line_constraint()
     c.build_module('origin_on_line_constraint','origin_on_line_constraint')
-    
+    print("Builded origin on line constraint")
+
     c = origin_on_plane_constraint()
     c.build_module('origin_on_plane_constraint','origin_on_plane_constraint')
+    print("Builded origin on plane constraint")
 
     c = origin_on_arc_constraint()
     c.build_module('origin_on_arc_constraint','origin_on_arc_constraint')
+    print("Builded origin on arc constraint")
 
 
