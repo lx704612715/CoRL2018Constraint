@@ -1,6 +1,4 @@
 import sympy as sym
-import numpy as np
-from scipy.optimize import minimize
 from symcymod.symcymod import create_module
 
 """ This file contains the symbolic development of the generalized constraint model.

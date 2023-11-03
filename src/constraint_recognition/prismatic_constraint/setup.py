@@ -15,5 +15,5 @@ ext_mods = [Extension(
     extra_compile_args=['-std=c99'],
     extra_link_args=[]
 )]
-setup(ext_modules=cythonize(ext_mods, **cy_opts),name='prismatic_constraint')
+setup(ext_modules=cythonize(ext_mods, **cy_opts), name='prismatic_constraint')
     

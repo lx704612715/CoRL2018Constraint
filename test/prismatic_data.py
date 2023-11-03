@@ -1,18 +1,18 @@
-from fit_constraints.fit_constraints import ConstraintProcessing, InputData
-import point_contact_constraint.point_contact_constraint as pcc
-import prismatic_constraint.prismatic_constraint as prismatic_constraint_fitter
-import axial_rotation_constraint.axial_rotation_constraint as revolute_constraint_fitter
-import origin_on_line_constraint.origin_on_line_constraint as relaxed_prismatic
-import origin_on_arc_constraint.origin_on_arc_constraint as relaxed_revolute
-import planar_constraint.planar_constraint as planar_constraint_fitter
 import numpy as np
-from pytransform3d.trajectories import pqs_from_transforms
-from pytransform3d.batch_rotations import batch_quaternion_xyzw_from_wxyz
 import pytransform3d.rotations as py3d_rot
 import pytransform3d.transformations as py3d_transform
+from pytransform3d.trajectories import pqs_from_transforms
+from pytransform3d.batch_rotations import batch_quaternion_xyzw_from_wxyz
+
 from contact_lfd.LfDusingEC.utils.utils_robotMath import TransInv, align_unit_vectors, Adjoint_from_matrix, \
     RtToTrans, orthogonal_project, angle_between, computer_direction_from_PCA, uniform_sample_vectors_on_a_plane, \
     get_vector_from_theta_phi, get_theta_phi
+
+from constraint_recognition.fit_constraints_tools.fit_constraints import ConstraintProcessing, InputData
+import constraint_recognition.origin_on_line_constraint.origin_on_line_constraint as relaxed_prismatic
+import constraint_recognition.origin_on_arc_constraint.origin_on_arc_constraint as relaxed_revolute
+import constraint_recognition.planar_constraint.planar_constraint as planar_constraint_fitter
+
 np.set_printoptions(precision=2)
 
 

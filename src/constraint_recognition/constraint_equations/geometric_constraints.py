@@ -5,8 +5,6 @@ non_kin(such as quaternion normalization) are implemented for each constraint ty
 
 
 class prismatic_constraint(constraint):
-
-
     sx, sy, sz = sym.symbols("sx sy sz")
     tx, ty, tz = sym.symbols("tx ty tz")
     wx_line, wy_line, dx, dy = sym.symbols('wx_line,wy_line,dx,dy')
@@ -32,7 +30,6 @@ class prismatic_constraint(constraint):
         self.build_eqns()
 
 class point_on_line_constraint(constraint):
-
     sx, sy, sz = sym.symbols("sx sy sz")
     wx_line, wy_line, dx, dy = sym.symbols('wx_line,wy_line,dx,dy')
     model_parameters = (sx, sy, sz, wx_line, wy_line, dx, dy)
@@ -50,7 +47,6 @@ class point_on_line_constraint(constraint):
 
 
 class origin_on_line_constraint(constraint):
-
     wx_line, wy_line, dx, dy = sym.symbols('wx_line,wy_line,dx,dy')
     model_parameters = (wx_line, wy_line, dx, dy)
 
@@ -65,9 +61,6 @@ class origin_on_line_constraint(constraint):
         self.build_eqns()
 
 class origin_on_plane_constraint(constraint):
-    # (a,b,c) is the point
-    # (sx,sy,sz) is the perpendicular vector on rigid body
-
     wx_line, wy_line, d = sym.symbols('wx_line,wy_line,d')
     model_parameters = (wx_line, wy_line, d)
 
@@ -79,9 +72,6 @@ class origin_on_plane_constraint(constraint):
         self.build_eqns()
 
 class origin_on_arc_constraint(constraint):
-    # (a,b,c) is the point
-    # (sx,sy,sz) is the perpendicular vector on rigid body
-
     wx_line, wy_line, d,cx,cy,cz,R = sym.symbols('wx_line,wy_line,d,cx,cy,cz,R')
     model_parameters = (wx_line, wy_line, d,cx,cy,cz,R)
 
@@ -99,9 +89,6 @@ class origin_on_arc_constraint(constraint):
         self.build_eqns()
 
 class point_contact_constraint(constraint):
-    # (a,b,c) is the point
-    # (sx,sy,sz) is the contact location on rigid body
-
     a,b,c,sx,sy,sz = sym.symbols("a b c sx sy sz")
     model_parameters = (a,b,c,sx,sy,sz)
 
@@ -113,9 +100,6 @@ class point_contact_constraint(constraint):
 
 
 class point_on_plane_constraint(constraint):
-    # (a,b,c) is the point
-    # (sx,sy,sz) is the contact location on rigid body
-
     sx, sy, sz = sym.symbols("sx sy sz")
     wx_line, wy_line, d = sym.symbols('wx_line,wy_line,d')
     model_parameters = (sx, sy, sz, wx_line, wy_line, d)
@@ -123,16 +107,12 @@ class point_on_plane_constraint(constraint):
     def __init__(self):
         s = sym.Matrix([self.sx, self.sy, self.sz])
         w = sym.Matrix([self.wx_line, self.wy_line, 0.0])
-        Phi1 = ((self.r + qtoA(self.q) * s) \
-                - exp_map(w) * sym.Matrix([0, 0, self.d])).T * exp_map(w) * sym.Matrix([0, 0, 1])
+        Phi1 = ((self.r + qtoA(self.q) * s) - exp_map(w) * sym.Matrix([0, 0, self.d])).T * exp_map(w) * sym.Matrix([0, 0, 1])
         self.Phi_mat = Phi1
         self.build_eqns()
 
 
 class planar_constraint(constraint):
-    # (a,b,c) is the point
-    # (sx,sy,sz) is the perpendicular vector on rigid body
-
     sx, sy, sz = sym.symbols("sx sy sz")
     wx_line, wy_line, d = sym.symbols('wx_line,wy_line,d')
     model_parameters = (sx, sy, sz, wx_line, wy_line, d)
@@ -151,9 +131,6 @@ class planar_constraint(constraint):
 
 
 class axial_rotation_constraint(constraint):
-    # (a,b,c) is the point
-    # (sx,sy,sz) is the perpendicular vector on rigid body
-
     sx, sy, sz = sym.symbols("sx sy sz")
     tx, ty, tz = sym.symbols("tx ty tz")
 
@@ -177,9 +154,6 @@ class axial_rotation_constraint(constraint):
 
 
 class concentric_cylinder_constraint(constraint):
-    # (a,b,c) is the point
-    # (sx,sy,sz) is the perpendicular vector on rigid body
-
     sx, sy, sz = sym.symbols("sx sy sz")
     tx, ty, tz = sym.symbols("tx ty tz")
 
@@ -202,20 +176,6 @@ class concentric_cylinder_constraint(constraint):
         self.Phi_mat = Phi1.col_join(Phi2).col_join(Phi3).col_join(Phi4)
         self.non_kin = PhiT.col_join(PhiST)
         self.build_eqns()
-
-# class orientation_constraint(constraint):
-#     qsx, qsy, qsz, qsw = sym.symbols("qsx qsy qsz qsw")
-#     model_parameters = (qsx, qsy, qsz, qsw)
-#
-#     def __init__(self):
-#         qs = sym.Matrix([self.qsw,self.qsx,self.qsy,self.qsz])
-#
-#         Phi1 =
-#
-#         PhiQ = qs.T*qs - sym.Matrix([1])
-#         self.Phi_mat = Phi1
-#         self.non_kin = PhiQ
-#         self.build_eqns()
 
 
 if __name__ == "__main__":
