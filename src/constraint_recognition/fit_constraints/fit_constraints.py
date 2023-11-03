@@ -73,22 +73,19 @@ class ConstraintProcessing:
 
 
 
-    def constraint_robust_lsq(self,id,iterations=100,type = 'm_estimates'):
+    def constraint_robust_lsq(self, id, iterations=100, type='m_estimates'):
 
         X = np.concatenate((id.p, id.q, id.v, id.w), axis=1)
 
         def model_fit_func(X, weights):
             return self.minimize_kinematic_lsqe(X[:, :3], X[:, 3:7], X[:, 7:10], X[:, 10:], weights).x
 
-
         model_error_func = lambda X, params, weights: self.kinematic_lsq_error(X[:, :3], X[:, 3:7], X[:, 7:10],
                                                                                       X[:, 10:], params)[1] * weights
         if type == 'm_estimates':
-            probs, params, errors = robust_lsq_m_estimates(model_error_func, model_fit_func, X,
-                                                           iterations=iterations)
+            probs, params, errors = robust_lsq_m_estimates(model_error_func, model_fit_func, X, iterations=iterations)
         else:
-            probs, params, errors = robust_lsq(model_error_func, model_fit_func, X,
-                                                           iterations=iterations)
+            probs, params, errors = robust_lsq(model_error_func, model_fit_func, X, iterations=iterations)
 
         return probs, params, errors
 
