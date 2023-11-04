@@ -71,7 +71,8 @@ class ConstraintProcessing:
 
     def constraint_robust_lsq(self, id, iterations=100, type='m_estimates'):
 
-        X = np.concatenate((id.p, id.q, id.v, id.w), axis=1)
+        # np.squeeze is to make sure pose and twist have the same data shape for np.concatenate
+        X = np.concatenate((np.squeeze(id.p), np.squeeze(id.q), np.squeeze(id.v), np.squeeze(id.w)), axis=1)
 
         def model_fit_func(X, weights):
             return self.minimize_kinematic_lsqe(X[:, :3], X[:, 3:7], X[:, 7:10], X[:, 10:], weights).x
@@ -105,6 +106,8 @@ class ConstraintProcessing:
             residual_forces = f - reaction_forces
             residual_torques = tau - reaction_torques
             # compensating for friction
+            if np.linalg.norm(v) == 0 or np.linalg.norm(w) == 0:
+                raise Exception
             v_hat = v / np.linalg.norm(v)
             w_hat = w / np.linalg.norm(w)
             friction_forces = np.dot(residual_forces, v_hat) * v_hat

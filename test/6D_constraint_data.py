@@ -12,6 +12,7 @@ from constraint_recognition.fit_constraints_tools.fit_constraints import Constra
 import constraint_recognition.origin_on_line_constraint.origin_on_line_constraint as relaxed_prismatic
 import constraint_recognition.origin_on_arc_constraint.origin_on_arc_constraint as relaxed_revolute
 import constraint_recognition.planar_constraint.planar_constraint as planar_constraint_fitter
+import constraint_recognition.axial_rotation_constraint.axial_rotation_constraint as revolute
 
 np.set_printoptions(precision=2)
 
@@ -85,26 +86,23 @@ def prismatic_learner(input_data):
     pscProc = ConstraintProcessing(relaxed_prismatic, include_velocities=False)
     pris_result = pscProc.constraint_robust_lsq(input_data, iterations=10)
     pris_param = pris_result[1]
-    constraint_R_base = py3d_rot.matrix_from_compact_axis_angle(np.append(pris_param[:2], 0))
-    r = constraint_R_base @ np.append(pris_param[2:], 0)
-    base_ht_constraint = np.eye(4, 4)
-    base_ht_constraint[:3, :3] = constraint_R_base
-    base_ht_constraint[:3, 3] = r
-    base_prismatic_direction = constraint_R_base.T @ np.array([0, 0, 1])
-    print("Pris axis direction is {}".format(rev_axis_direction))
-    return base_prismatic_direction, r
+    base_R_constraint = py3d_rot.matrix_from_compact_axis_angle(np.append(pris_param[:2], 0))
+    base_prismatic_origin = base_R_constraint @ np.append(pris_param[2:], 0)
+    base_prismatic_direction = base_R_constraint @ np.array([0, 0, 1])
+    print("Pris axis direction is {}".format(base_prismatic_direction))
+    print("Pris origin is {}".format(base_prismatic_origin))
+    return base_prismatic_direction, base_prismatic_origin
 
 
 def revolute_learner(input_data):
     arcProc = ConstraintProcessing(relaxed_revolute, include_velocities=False)
     # wx_line, wy_line, d, cx, cy, cz, R
-    rev_result = arcProc.constraint_robust_lsq(input_data, iterations=20)
+    rev_result = arcProc.constraint_robust_lsq(input_data, iterations=30)
     rev_param = rev_result[1]
-    constraint_R_base = py3d_rot.matrix_from_compact_axis_angle(np.append(rev_param[:2], 0))
-    rev_axis_direction = constraint_R_base.T @ np.array([0, 0, 1])
+    base_R_constraint = py3d_rot.matrix_from_compact_axis_angle(np.append(rev_param[:2], 0))
+    rev_axis_direction = base_R_constraint @ np.array([0, 0, 1])
     l = rev_param[-1]
     r_center_point = rev_param[3:6]
-
     print("Rev axis direction is {}".format(rev_axis_direction))
     print("Radius is {}".format(l))
     print("Revolute center is {}".format(r_center_point))
@@ -112,29 +110,42 @@ def revolute_learner(input_data):
     return rev_axis_direction, r_center_point, l
 
 
+def complex_rev_learner(input_data):
+    arc_strict_Proc = ConstraintProcessing(revolute, include_velocities=False)
+    rev_result = arc_strict_Proc.constraint_robust_lsq(input_data, iterations=20)
+    rev_param = rev_result[1]
+    w = rev_param[6:8]
+    constraint_R_base = py3d_rot.matrix_from_compact_axis_angle(np.append(w, 0))
+    rev_axis_direction = constraint_R_base.T @ np.array([0, 0, 1])
+    r_center_point = rev_param[8:11]
+    print("Rev axis direction is {}".format(rev_axis_direction))
+    print("Revolute center is {}".format(r_center_point))
+    return rev_axis_direction, r_center_point
+
+
 # Now generate a prismatic movement!
 num_waypoints = 100
 init_base_ht_ee = np.eye(4, 4)
-init_base_ht_ee[:3, 3] = [0, 0, 0]
+init_base_ht_ee[:3, 3] = [1, 3, 4]
 
 # generate prismatic joint trajectory
-prismatic_direction = np.array([1, 1, 1])
+prismatic_direction = np.array([1, 1, 100])
 prismatic_direction = prismatic_direction/np.linalg.norm(prismatic_direction)
 prismatic_param = np.append(np.array(get_theta_phi(prismatic_direction)), [0, 0.05])
 pris_base_ht_ee = prismatic_trajectory(prismatic_param, start_pose_SE3=init_base_ht_ee, T=1, dt=0.05)
 
 # generate revolute joint trajectory
-rev_axis_direction = np.array([1, 0, 0])
+rev_axis_direction = np.array([1, 1, 0])
 rev_axis_direction = rev_axis_direction/np.linalg.norm(rev_axis_direction)
-rev_center_point_and_state_vel = [1, 2, 3, 0, 0.2]
+rev_center_point_and_state_vel = [0, 0, 3, 0, 0.5]
 rev_param = np.append(np.array(get_theta_phi(rev_axis_direction)), rev_center_point_and_state_vel)
 rev_base_ht_ee = revolute_trajectory(rev_param, start_pose_SE3=init_base_ht_ee, T=1, dt=0.05)
 
 # construct input data
-input_data = construct_input_data(traj_SE3=rev_base_ht_ee)
+input_data = construct_input_data(traj_SE3=pris_base_ht_ee)
 
-# pris_result = prismatic_learner(input_data)
-rev_result = revolute_learner(input_data)
+pris_result = prismatic_learner(input_data)
+# rev_result = revolute_learner(input_data)
 
 print("debug")
 
