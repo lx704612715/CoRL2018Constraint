@@ -2,51 +2,51 @@ import numpy as np
 cimport numpy as np
 
 cdef extern from 'planar_constraint_code.h':
-    void Phi_mat(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double vx, double vy, double vz, double wx, double wy, double wz, double sx, double sy, double sz, double wx_line, double wy_line, double d, double *out_7136718753491164025)
+    void Phi_mat(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double vx, double vy, double vz, double wx, double wy, double wz, double sx, double sy, double sz, double wx_line, double wy_line, double d, double *out_5563922012331135881)
 
 
 cdef extern from 'planar_constraint_code.h':
-    void non_kin(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double vx, double vy, double vz, double wx, double wy, double wz, double sx, double sy, double sz, double wx_line, double wy_line, double d, double *out_2322432977313704027)
+    void non_kin(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double vx, double vy, double vz, double wx, double wy, double wz, double sx, double sy, double sz, double wx_line, double wy_line, double d, double *out_9181756681266591898)
 
 
 cdef extern from 'planar_constraint_code.h':
-    void phidelta(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double vx, double vy, double vz, double wx, double wy, double wz, double sx, double sy, double sz, double wx_line, double wy_line, double d, double *out_3589408009681196228)
+    void phidelta(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double vx, double vy, double vz, double wx, double wy, double wz, double sx, double sy, double sz, double wx_line, double wy_line, double d, double *out_6009499402132713858)
 
 
 cdef extern from 'planar_constraint_code.h':
-    void non_kinJ(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double vx, double vy, double vz, double wx, double wy, double wz, double sx, double sy, double sz, double wx_line, double wy_line, double d, double *out_2004435374870575889)
+    void non_kinJ(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double vx, double vy, double vz, double wx, double wy, double wz, double sx, double sy, double sz, double wx_line, double wy_line, double d, double *out_3311797954985724120)
 
 
 cdef extern from 'planar_constraint_code.h':
-    void Phi_matJ(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double vx, double vy, double vz, double wx, double wy, double wz, double sx, double sy, double sz, double wx_line, double wy_line, double d, double *out_2206741638912068342)
+    void Phi_matJ(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double vx, double vy, double vz, double wx, double wy, double wz, double sx, double sy, double sz, double wx_line, double wy_line, double d, double *out_9041538714702872501)
 
 
 cdef extern from 'planar_constraint_code.h':
-    void phideltaJ(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double vx, double vy, double vz, double wx, double wy, double wz, double sx, double sy, double sz, double wx_line, double wy_line, double d, double *out_3791164168042338662)
+    void phideltaJ(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double vx, double vy, double vz, double wx, double wy, double wz, double sx, double sy, double sz, double wx_line, double wy_line, double d, double *out_5291722897830422285)
 
 
 cdef extern from 'planar_constraint_code.h':
-    void feq1(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double frx, double fry, double frz, double taurx, double taury, double taurz, double *k, double sx, double sy, double sz, double wx_line, double wy_line, double d, double *out_4915780725141845155)
+    void feq1(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double frx, double fry, double frz, double taurx, double taury, double taurz, double *k, double sx, double sy, double sz, double wx_line, double wy_line, double d, double *out_6878138477335694644)
 
 
 cdef extern from 'planar_constraint_code.h':
-    void taueq1(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double frx, double fry, double frz, double taurx, double taury, double taurz, double *k, double sx, double sy, double sz, double wx_line, double wy_line, double d, double *out_795651932216339502)
+    void taueq1(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double frx, double fry, double frz, double taurx, double taury, double taurz, double *k, double sx, double sy, double sz, double wx_line, double wy_line, double d, double *out_1382038628243553793)
 
 
 cdef extern from 'planar_constraint_code.h':
-    void feq1J(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double frx, double fry, double frz, double taurx, double taury, double taurz, double *k, double sx, double sy, double sz, double wx_line, double wy_line, double d, double *out_2372189086250648796)
+    void feq1J(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double frx, double fry, double frz, double taurx, double taury, double taurz, double *k, double sx, double sy, double sz, double wx_line, double wy_line, double d, double *out_1799438055021724643)
 
 
 cdef extern from 'planar_constraint_code.h':
-    void taueq1J(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double frx, double fry, double frz, double taurx, double taury, double taurz, double *k, double sx, double sy, double sz, double wx_line, double wy_line, double d, double *out_1120808833313391499)
+    void taueq1J(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double frx, double fry, double frz, double taurx, double taury, double taurz, double *k, double sx, double sy, double sz, double wx_line, double wy_line, double d, double *out_5275369355788078023)
 
 
 cdef extern from 'planar_constraint_code.h':
-    void feq1Jk(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double frx, double fry, double frz, double taurx, double taury, double taurz, double *k, double sx, double sy, double sz, double wx_line, double wy_line, double d, double *out_1161741101984001572)
+    void feq1Jk(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double frx, double fry, double frz, double taurx, double taury, double taurz, double *k, double sx, double sy, double sz, double wx_line, double wy_line, double d, double *out_890053769051772089)
 
 
 cdef extern from 'planar_constraint_code.h':
-    void taueq1Jk(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double frx, double fry, double frz, double taurx, double taury, double taurz, double *k, double sx, double sy, double sz, double wx_line, double wy_line, double d, double *out_1118820089705171044)
+    void taueq1Jk(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double frx, double fry, double frz, double taurx, double taury, double taurz, double *k, double sx, double sy, double sz, double wx_line, double wy_line, double d, double *out_5162409258788524243)
 
 
 cdef extern from 'planar_constraint_code.h':
@@ -58,64 +58,64 @@ cdef extern from 'planar_constraint_code.h':
 
 def Phi_mat_c(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double vx, double vy, double vz, double wx, double wy, double wz, double sx, double sy, double sz, double wx_line, double wy_line, double d):
 
-    cdef np.ndarray[np.double_t, ndim=2] out_7136718753491164025 = np.empty((3,1))
-    Phi_mat(rx, ry, rz, e0, e1, e2, e3, vx, vy, vz, wx, wy, wz, sx, sy, sz, wx_line, wy_line, d, <double*> out_7136718753491164025.data)
-    return out_7136718753491164025
+    cdef np.ndarray[np.double_t, ndim=2] out_5563922012331135881 = np.empty((3,1))
+    Phi_mat(rx, ry, rz, e0, e1, e2, e3, vx, vy, vz, wx, wy, wz, sx, sy, sz, wx_line, wy_line, d, <double*> out_5563922012331135881.data)
+    return out_5563922012331135881
 def non_kin_c(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double vx, double vy, double vz, double wx, double wy, double wz, double sx, double sy, double sz, double wx_line, double wy_line, double d):
 
-    cdef np.ndarray[np.double_t, ndim=2] out_2322432977313704027 = np.empty((1,1))
-    non_kin(rx, ry, rz, e0, e1, e2, e3, vx, vy, vz, wx, wy, wz, sx, sy, sz, wx_line, wy_line, d, <double*> out_2322432977313704027.data)
-    return out_2322432977313704027
+    cdef np.ndarray[np.double_t, ndim=2] out_9181756681266591898 = np.empty((1,1))
+    non_kin(rx, ry, rz, e0, e1, e2, e3, vx, vy, vz, wx, wy, wz, sx, sy, sz, wx_line, wy_line, d, <double*> out_9181756681266591898.data)
+    return out_9181756681266591898
 def phidelta_c(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double vx, double vy, double vz, double wx, double wy, double wz, double sx, double sy, double sz, double wx_line, double wy_line, double d):
 
-    cdef np.ndarray[np.double_t, ndim=2] out_3589408009681196228 = np.empty((3,1))
-    phidelta(rx, ry, rz, e0, e1, e2, e3, vx, vy, vz, wx, wy, wz, sx, sy, sz, wx_line, wy_line, d, <double*> out_3589408009681196228.data)
-    return out_3589408009681196228
+    cdef np.ndarray[np.double_t, ndim=2] out_6009499402132713858 = np.empty((3,1))
+    phidelta(rx, ry, rz, e0, e1, e2, e3, vx, vy, vz, wx, wy, wz, sx, sy, sz, wx_line, wy_line, d, <double*> out_6009499402132713858.data)
+    return out_6009499402132713858
 def non_kinJ_c(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double vx, double vy, double vz, double wx, double wy, double wz, double sx, double sy, double sz, double wx_line, double wy_line, double d):
 
-    cdef np.ndarray[np.double_t, ndim=2] out_2004435374870575889 = np.empty((1,6))
-    non_kinJ(rx, ry, rz, e0, e1, e2, e3, vx, vy, vz, wx, wy, wz, sx, sy, sz, wx_line, wy_line, d, <double*> out_2004435374870575889.data)
-    return out_2004435374870575889
+    cdef np.ndarray[np.double_t, ndim=2] out_3311797954985724120 = np.empty((1,6))
+    non_kinJ(rx, ry, rz, e0, e1, e2, e3, vx, vy, vz, wx, wy, wz, sx, sy, sz, wx_line, wy_line, d, <double*> out_3311797954985724120.data)
+    return out_3311797954985724120
 def Phi_matJ_c(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double vx, double vy, double vz, double wx, double wy, double wz, double sx, double sy, double sz, double wx_line, double wy_line, double d):
 
-    cdef np.ndarray[np.double_t, ndim=2] out_2206741638912068342 = np.empty((1,6))
-    Phi_matJ(rx, ry, rz, e0, e1, e2, e3, vx, vy, vz, wx, wy, wz, sx, sy, sz, wx_line, wy_line, d, <double*> out_2206741638912068342.data)
-    return out_2206741638912068342
+    cdef np.ndarray[np.double_t, ndim=2] out_9041538714702872501 = np.empty((1,6))
+    Phi_matJ(rx, ry, rz, e0, e1, e2, e3, vx, vy, vz, wx, wy, wz, sx, sy, sz, wx_line, wy_line, d, <double*> out_9041538714702872501.data)
+    return out_9041538714702872501
 def phideltaJ_c(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double vx, double vy, double vz, double wx, double wy, double wz, double sx, double sy, double sz, double wx_line, double wy_line, double d):
 
-    cdef np.ndarray[np.double_t, ndim=2] out_3791164168042338662 = np.empty((1,6))
-    phideltaJ(rx, ry, rz, e0, e1, e2, e3, vx, vy, vz, wx, wy, wz, sx, sy, sz, wx_line, wy_line, d, <double*> out_3791164168042338662.data)
-    return out_3791164168042338662
+    cdef np.ndarray[np.double_t, ndim=2] out_5291722897830422285 = np.empty((1,6))
+    phideltaJ(rx, ry, rz, e0, e1, e2, e3, vx, vy, vz, wx, wy, wz, sx, sy, sz, wx_line, wy_line, d, <double*> out_5291722897830422285.data)
+    return out_5291722897830422285
 def feq1_c(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double frx, double fry, double frz, double taurx, double taury, double taurz, np.ndarray[np.double_t, ndim=2] k, double sx, double sy, double sz, double wx_line, double wy_line, double d):
 
-    cdef np.ndarray[np.double_t, ndim=2] out_4915780725141845155 = np.empty((3,1))
-    feq1(rx, ry, rz, e0, e1, e2, e3, frx, fry, frz, taurx, taury, taurz, <double*> k.data, sx, sy, sz, wx_line, wy_line, d, <double*> out_4915780725141845155.data)
-    return out_4915780725141845155
+    cdef np.ndarray[np.double_t, ndim=2] out_6878138477335694644 = np.empty((3,1))
+    feq1(rx, ry, rz, e0, e1, e2, e3, frx, fry, frz, taurx, taury, taurz, <double*> k.data, sx, sy, sz, wx_line, wy_line, d, <double*> out_6878138477335694644.data)
+    return out_6878138477335694644
 def taueq1_c(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double frx, double fry, double frz, double taurx, double taury, double taurz, np.ndarray[np.double_t, ndim=2] k, double sx, double sy, double sz, double wx_line, double wy_line, double d):
 
-    cdef np.ndarray[np.double_t, ndim=2] out_795651932216339502 = np.empty((3,1))
-    taueq1(rx, ry, rz, e0, e1, e2, e3, frx, fry, frz, taurx, taury, taurz, <double*> k.data, sx, sy, sz, wx_line, wy_line, d, <double*> out_795651932216339502.data)
-    return out_795651932216339502
+    cdef np.ndarray[np.double_t, ndim=2] out_1382038628243553793 = np.empty((3,1))
+    taueq1(rx, ry, rz, e0, e1, e2, e3, frx, fry, frz, taurx, taury, taurz, <double*> k.data, sx, sy, sz, wx_line, wy_line, d, <double*> out_1382038628243553793.data)
+    return out_1382038628243553793
 def feq1J_c(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double frx, double fry, double frz, double taurx, double taury, double taurz, np.ndarray[np.double_t, ndim=2] k, double sx, double sy, double sz, double wx_line, double wy_line, double d):
 
-    cdef np.ndarray[np.double_t, ndim=2] out_2372189086250648796 = np.empty((1,6))
-    feq1J(rx, ry, rz, e0, e1, e2, e3, frx, fry, frz, taurx, taury, taurz, <double*> k.data, sx, sy, sz, wx_line, wy_line, d, <double*> out_2372189086250648796.data)
-    return out_2372189086250648796
+    cdef np.ndarray[np.double_t, ndim=2] out_1799438055021724643 = np.empty((1,6))
+    feq1J(rx, ry, rz, e0, e1, e2, e3, frx, fry, frz, taurx, taury, taurz, <double*> k.data, sx, sy, sz, wx_line, wy_line, d, <double*> out_1799438055021724643.data)
+    return out_1799438055021724643
 def taueq1J_c(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double frx, double fry, double frz, double taurx, double taury, double taurz, np.ndarray[np.double_t, ndim=2] k, double sx, double sy, double sz, double wx_line, double wy_line, double d):
 
-    cdef np.ndarray[np.double_t, ndim=2] out_1120808833313391499 = np.empty((1,6))
-    taueq1J(rx, ry, rz, e0, e1, e2, e3, frx, fry, frz, taurx, taury, taurz, <double*> k.data, sx, sy, sz, wx_line, wy_line, d, <double*> out_1120808833313391499.data)
-    return out_1120808833313391499
+    cdef np.ndarray[np.double_t, ndim=2] out_5275369355788078023 = np.empty((1,6))
+    taueq1J(rx, ry, rz, e0, e1, e2, e3, frx, fry, frz, taurx, taury, taurz, <double*> k.data, sx, sy, sz, wx_line, wy_line, d, <double*> out_5275369355788078023.data)
+    return out_5275369355788078023
 def feq1Jk_c(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double frx, double fry, double frz, double taurx, double taury, double taurz, np.ndarray[np.double_t, ndim=2] k, double sx, double sy, double sz, double wx_line, double wy_line, double d):
 
-    cdef np.ndarray[np.double_t, ndim=2] out_1161741101984001572 = np.empty((1,3))
-    feq1Jk(rx, ry, rz, e0, e1, e2, e3, frx, fry, frz, taurx, taury, taurz, <double*> k.data, sx, sy, sz, wx_line, wy_line, d, <double*> out_1161741101984001572.data)
-    return out_1161741101984001572
+    cdef np.ndarray[np.double_t, ndim=2] out_890053769051772089 = np.empty((1,3))
+    feq1Jk(rx, ry, rz, e0, e1, e2, e3, frx, fry, frz, taurx, taury, taurz, <double*> k.data, sx, sy, sz, wx_line, wy_line, d, <double*> out_890053769051772089.data)
+    return out_890053769051772089
 def taueq1Jk_c(double rx, double ry, double rz, double e0, double e1, double e2, double e3, double frx, double fry, double frz, double taurx, double taury, double taurz, np.ndarray[np.double_t, ndim=2] k, double sx, double sy, double sz, double wx_line, double wy_line, double d):
 
-    cdef np.ndarray[np.double_t, ndim=2] out_1118820089705171044 = np.empty((1,3))
-    taueq1Jk(rx, ry, rz, e0, e1, e2, e3, frx, fry, frz, taurx, taury, taurz, <double*> k.data, sx, sy, sz, wx_line, wy_line, d, <double*> out_1118820089705171044.data)
-    return out_1118820089705171044
+    cdef np.ndarray[np.double_t, ndim=2] out_5162409258788524243 = np.empty((1,3))
+    taueq1Jk(rx, ry, rz, e0, e1, e2, e3, frx, fry, frz, taurx, taury, taurz, <double*> k.data, sx, sy, sz, wx_line, wy_line, d, <double*> out_5162409258788524243.data)
+    return out_5162409258788524243
 def len_model_parameters_c():
 
     return len_model_parameters()
