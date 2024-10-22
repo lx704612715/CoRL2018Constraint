@@ -126,4 +126,4 @@ class ConstraintProcessing:
 
         init_cond = np.random.rand(1, int(self.c.num_k_c()))
         objective_func = lambda K: get_residual(r, q, fr, taur, K, params)
-        return minimize(objective_func, init_cond, method='BFGS')
+        return minimize(objective_func, init_cond.flatten(), method='BFGS')
